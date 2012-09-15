@@ -1,0 +1,626 @@
+{This is where all of the typing things will be                                ]
+[______________________________________________________________________________]
+[procedure TypeSend1(text:string);                                             ]
+[procedure PressEnter;                                                         ]
+[procedure PhoenixType(message1: string; chance, maxmistakes: integer);        ]
+[function GetNeighbourKey(S: String; DanishKB: Boolean): String;               ]
+[function IsCapitalLetter(S: String): Boolean;                                 ]
+[procedure ProKey(S: String);                                                  ]
+[procedure TypeHumanNE(Text: String; Time, RanTime, Smartness: Integer; DanishKeyBoard: Boolean);]
+[procedure AlmostType(message0 : string);                                      ]
+[function RandomCase(message1:string):string;                                  ]
+[function StrToChar(S: String): Char;                                          ]
+[______________________________________________________________________________}
+
+//Created by: ti.teg.tnod.I
+//Description: Just types, good for creating procedures
+//Used Like: TypeSend1('Hello World');
+procedure TypeSend1(text:string);
+  var  LoadNumber:Integer;
+  begin
+    LoadNumber:=1;
+    repeat
+      KeyDown(CharToVKey(StrGet(Text, loadnumber)));
+      Wait(10 + Random(10));
+      KeyUp(CharToVKey(StrGet(Text, loadnumber)));
+      LoadNumber:=LoadNumber+1;
+      Wait(KDelay + random(KDelay));
+    until(LoadNumber>Length(text));
+  end;
+
+//Created by: ti.teg.tnod.I
+//Description: Presses the enter key
+//Used Like: PressEnter;
+procedure PressEnter;
+begin
+  VKeyDown(13);   
+  Wait(100 + Random(100));
+  VKeyUp(13);
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Types and makes human-like mistakes
+//Used Like: Phoenixtype('These are words', 7, 2);
+procedure PhoenixType(message1: string; chance, maxmistakes: integer);
+var lengths, number, othernumber: integer;
+    letter1, letter2: string;
+begin
+  othernumber:= random(chance + 1)
+  if othernumber < maxmistakes + 1 then
+  begin
+    repeat
+      lengths:= length(message1)
+      repeat
+        number:= random(lengths + 1)
+      until(number > 1)and(number = lengths = false)
+      letter1:= message1[number]
+      letter2:= message1[number - 1]
+      delete(message1, number, 1);
+      insert(letter2, message1, number);
+      delete(message1, number - 1, 1);
+      insert(letter1, message1, number - 1);
+      othernumber:= othernumber - 1
+    until(othernumber < 0)
+  end;
+  typesend1(message1);
+end;
+
+//Created by: King Of Knives
+//Description:  Returns the value of a key next to another
+//Used Like: GetNeighbourKey('r', false);
+function GetNeighbourKey(S: String; DanishKB: Boolean): String;
+var B: Boolean;
+begin
+  if Uppercase(S) = S then B:= True;
+  begin
+    B:= False;
+  end;
+  If(Length(S) > 1)then
+  begin
+    Writeln('GetNeighbourKey problem: Only supports 1 letter at a time')
+  end;
+  S:= LowerCase(S)
+  if(S = 'Æ')then
+  begin
+    S:= 'æ'
+  end;
+  if(S = 'Ø')then
+  begin
+    S:= 'ø'
+  end;
+  if(S = 'Å')then
+  begin
+    S:= 'å'
+  end;
+  if(GetLetters(S) = '')then
+  begin
+    Result:= S;
+  end;
+  case S of
+    'a': begin
+           case Random(5) of
+             0: Result:= 'q';
+             1: Result:= 'w';
+             2: Result:= 's';
+             3: Result:= 'z';
+             5: Result:= '<';
+           end;
+         end;
+
+    'b': begin
+           case Random(5) of
+             0: Result:= 'v';
+             1: Result:= 'g';
+             2: Result:= 'h';
+             3: Result:= 'n';
+             4: Result:= ' ';
+           end;
+         end;
+
+    'c': begin
+           case Random(5) of
+             0: Result:= 'x';
+             1: Result:= 'd';
+             2: Result:= 'f';
+             3: Result:= 'v';
+             4: Result:= ' ';
+           end;
+         end;
+
+    'd': begin
+           case Random(6) of
+             0: Result:= 's';
+             1: Result:= 'e';
+             2: Result:= 'r';
+             3: Result:= 'f';
+             4: Result:= 'c';
+             5: Result:= 'x';
+           end;
+         end;
+
+    'e': begin
+           case Random(6) of
+             0: Result:= 'w';
+             1: Result:= 's';
+             2: Result:= 'd';
+             3: Result:= 'r';
+             4: Result:= '3';
+             5: Result:= '4';
+           end;
+         end;
+
+    'f': begin
+           case Random(6) of
+             0: Result:= 'd';
+             1: Result:= 'r';
+             2: Result:= 't';
+             3: Result:= 'g';
+             4: Result:= 'v';
+             5: Result:= 'c';
+           end;
+         end;
+
+    'g': begin
+           case Random(6) of
+             0: Result:= 'f';
+             1: Result:= 't';
+             2: Result:= 'y';
+             3: Result:= 'h';
+             4: Result:= 'b';
+             5: Result:= 'v';
+           end;
+         end;
+
+    'h': begin
+           case Random(6) of
+             0: Result:= 'g';
+             1: Result:= 'y';
+             2: Result:= 'u';
+             3: Result:= 'j';
+             4: Result:= 'n';
+             5: Result:= 'b';
+           end;
+         end;
+
+    'i': begin
+           case Random(6) of
+             0: Result:= 'u';
+             1: Result:= 'j';
+             2: Result:= 'k';
+             3: Result:= 'o';
+             4: Result:= '8';
+             5: Result:= '9';
+           end;
+         end;
+
+    'j': begin
+           case Random(6) of
+             0: Result:= 'h';
+             1: Result:= 'u';
+             2: Result:= 'i';
+             3: Result:= 'k';
+             4: Result:= 'm';
+             5: Result:= 'n';
+           end;
+         end;
+
+    'k': begin
+           case Random(6) of
+             0: Result:= 'm';
+             1: Result:= 'j';
+             2: Result:= 'i';
+             3: Result:= 'o';
+             4: Result:= 'l';
+             5: Result:= ',';
+           end;
+         end;
+
+    'l': begin
+           case Random(5) of
+             0: Result:= 'k';
+             1: Result:= 'o';
+             2: Result:= 'p';
+             3: Result:= '.';
+             4:  if DanishKB then
+                 begin
+                   Result:= 'æ'
+                 end else
+                 case Random(4) of
+                   0: Result:= 'k';
+                   1: Result:= 'o';
+                   2: Result:= 'p';
+                   3: Result:= '.';
+                 end;
+           end;
+         end;
+
+    'm': begin
+           case Random(5) of
+             0: Result:= 'n';
+             1: Result:= 'j';
+             2: Result:= 'k';
+             3: Result:= ',';
+             4: Result:= ' ';
+           end;
+         end;
+
+    'n': begin
+           case Random(5) of
+             0: Result:= 'b';
+             1: Result:= 'h';
+             2: Result:= 'j';
+             3: Result:= 'm';
+             4: Result:= ' ';
+           end;
+         end;
+
+    'o': begin
+           case Random(6) of
+             0: Result:= 'i';
+             1: Result:= 'k';
+             2: Result:= 'l';
+             3: Result:= 'p';
+             4: Result:= '9';
+             5: Result:= '0';
+           end;
+         end;
+
+    'p': begin
+           case Random(6) of
+             0: Result:= 'o';
+             1: Result:= 'l';
+             2: Result:= '0';
+             3: Result:= '+';
+             4:  if DanishKB then
+                 begin
+                   Result:= 'æ';
+                 end else
+                 case Random(4) of
+                   0: Result:= 'o';
+                   1: Result:= 'l';
+                   2: Result:= '0';
+                   3: Result:= '+';
+                 end;
+             5:  if DanishKB then
+                 begin
+                   Result:= 'ø';
+                 end else
+                 case Random(4) of
+                   0: Result:= 'o';
+                   1: Result:= 'l';
+                   2: Result:= '0';
+                   3: Result:= '+';
+                 end;
+           end;
+         end;
+
+    'q': begin
+           case Random(5) of
+             0: Result:= 'a';
+             1: Result:= 's';
+             2: Result:= 'w';
+             3: Result:= '1';
+             4: Result:= '2';
+           end;
+         end;
+
+    'r': begin
+           case Random(6) of
+             0: Result:= 'e';
+             1: Result:= 'd';
+             2: Result:= 'f';
+             3: Result:= 't';
+             4: Result:= '4';
+             5: Result:= '5';
+           end;
+         end;
+
+    's': begin
+           case Random(3) of
+             0: Result:= 'a';
+             1: Result:= 'w';
+             2: Result:= 'e';
+             3: Result:= 'd';
+             4: Result:= 'x';
+             5: Result:= 'z';
+           end;
+         end;
+
+    't': begin
+           case Random(6) of
+             0: Result:= 'r';
+             1: Result:= 'f';
+             2: Result:= 'g';
+             3: Result:= 'y';
+             4: Result:= '5';
+             5: Result:= '6';
+           end;
+         end;
+
+    'u': begin
+           case Random(6) of
+             0: Result:= 'y';
+             1: Result:= 'h';
+             2: Result:= 'j';
+             3: Result:= 'i';
+             4: Result:= '7';
+             5: Result:= '8';
+           end;
+         end;
+
+    'v': begin
+           case Random(5) of
+             0: Result:= 'c';
+             1: Result:= 'f';
+             2: Result:= 'g';
+             3: Result:= 'b';
+             4: Result:= ' ';
+           end;
+         end;
+
+    'w': begin
+           case Random(6) of
+             0: Result:= 'q';
+             1: Result:= 'a';
+             2: Result:= 's';
+             3: Result:= 'e';
+             4: Result:= '2';
+             5: Result:= '3';
+           end;
+         end;
+
+    'x': begin
+           case Random(4) of
+             0: Result:= 'z';
+             1: Result:= 's';
+             2: Result:= 'd';
+             3: Result:= 'c';
+           end;
+         end;
+
+    'y': begin
+           case Random(6) of
+             0: Result:= 't';
+             1: Result:= 'g';
+             2: Result:= 'h';
+             3: Result:= 'u';
+             4: Result:= '6';
+             5: Result:= '7';
+           end;
+         end;
+
+    'z': begin
+           case Random(4) of
+             0: Result:= 'a';
+             1: Result:= 's';
+             2: Result:= 'x';
+             3: Result:= '<';
+           end;
+         end;
+       end;
+    if DanishKB then
+    begin
+      Case S of
+
+        'æ': begin
+               Case Random(6) of
+                 0: Result:= 'l';
+                 1: Result:= '.';
+                 2: Result:= '-';
+                 3: Result:= 'ø';
+                 4: Result:= 'å';
+                 5: Result:= 'p';
+               end;
+             end;
+
+        'ø': begin
+               case Random(4) of
+                 0: Result:= 'æ';
+                 1: Result:= '-';
+                 2: Result:= '''';
+                 3: Result:= 'å';
+               end;
+             end;
+
+        'å': begin
+               case Random(4) of
+                 0: Result:= '+';
+                 1: Result:= 'p';
+                 2: Result:= 'æ';
+                 3: Result:= 'ø';
+               end;
+             end;
+           end;
+  end;
+  If(B)then
+  begin
+    Result:= Uppercase(Result)
+    if(Result = 'æ')then
+    begin
+      Result:= 'Æ'
+    end;
+    if(Result = 'ø')then
+    begin
+      Result:= 'Ø'
+    end;
+    if(Result = 'å')then
+    begin
+      Result:= 'Å'
+    end;
+  end;
+end;
+
+function StrToChar(S: String): Char; forward;
+
+//Created by: King Of Knives
+//Description: Returns true if inserted letter is a capital-letters.
+//Used Like: IsCapitalLetter('R');
+function IsCapitalLetter(S: String): Boolean;
+var
+ SS: String;
+begin
+  if(Length(S) > 1)then
+  begin
+    Writeln('IsCapitalLetter problem: Only supports 1 letter at a time')
+  end else
+  begin
+    SS:= Lowercase(S)
+    if(SS = S)then
+    begin
+      Result:= False;
+    end else
+    begin
+      Result:= True;
+    end;
+  end;
+  Case S of
+    'Æ': Result:= True;
+    'Ø': Result:= True;
+    'Å': Result:= True;
+  end;
+end;
+
+//Created by: King Of Knives
+//Description: Clicks the inserted key, humanly. Inserted key must be a string.
+//Used Like: ProKey('H');
+procedure ProKey(S: String);
+var
+ Shift: Boolean;
+begin
+  if(IsCapitalLetter(S))then
+  begin
+    Shift:= True;
+  end;
+  if(S = '!')or(S = '"')or(S = '#')or(S = '\u20ac')or(S = '%')or(S = '&')
+  or(S = '/')or(S = '(')or(S = ')')or(S = '=')or(S = '?')or(S = ':')
+  or(S = ';')or(S = '*')then
+  begin
+    Shift:= True;
+  end;
+  if(Shift)then
+  begin
+    KeyDown(VK_Shift)
+    Wait(10+random(10))
+  end;
+  KeyDown(CharToVKey(StrToChar(S)))
+  Wait(20+random(20))
+  KeyUp(CharToVKey(StrToChar(S)))
+  KeyUp(CharToVKey(StrToChar(S)))
+  if(Shift)then
+  begin
+    Wait(10+random(10))
+    KeyUp(VK_Shift)
+    KeyUp(VK_Shift)
+  end;
+end;
+
+//Created by: King Of Knives
+//Description: Types in every letter with Time + random RanTime. Text is what
+//you want to write, and smartness is number of mistakes, where 0 is no mistakes.
+//1 is every letter wrong, and 50 is a few letters wrong per 100. DanishKeyBoard
+//is if you have a Danish keyboard. It doesn't press enter for you.
+//ADDED: Upon wrong-types, it clicks a letter which is neighbour to the right
+//letter.
+//Used Like: TypeHumanNE('Hello! I`m somebody!', 100, 50, 10, false);
+procedure TypeHumanNE(Text: String; Time, RanTime, Smartness: Integer; DanishKeyBoard: Boolean);
+var
+ I: Integer;
+ S: String;
+begin
+  Wait(50+random(50))
+  if(Smartness > 200)then
+  begin
+    Writeln('Max smartness is 50')
+    TerminateScript;
+  end;
+  begin
+    I:= 0;
+    repeat
+      I:= I + 1;
+      S:= Copy(Text,I,1)
+      if(Smartness < 1)or(S = ' ')then
+      begin
+        S:= S;
+      end else
+        Case random(Smartness) of
+          0: begin
+               TypeSend1(GetNeighbourKey(S,DanishKeyBoard));
+               Wait(Time+Random(RanTime))
+               VKeyDown(8)
+               Wait(20+random(20))
+               VKeyUp(8)
+               VKeyUp(8)
+               Wait(Time+Random(RanTime))
+             end;
+        end;
+      ProKey(S)
+      Wait(Time+Random(RanTime))
+    until(I = Length(Text))
+  end;
+end;
+
+//Created by: TwoSevenNine
+//Edited By: TheguyWhoGotOn
+//Description: Types most of a message than erases it, great for Anti-Ban.
+//Used Like: AlmostType('Hello I am me! Who are you?');
+Procedure AlmostType(message0 : string);
+var
+  a,b:integer;
+  c:string;
+begin
+  b:=range(2,5)
+  c:=copy(message0, 0 , round(length(message0) / b))
+  TypeHumanNE(c, 150, 75, 20, false);
+  a:=0;
+  wait(1000)
+  repeat
+    a:=a+1;
+    begin
+      KeyDown(VK_BACK)
+      Wait(50+random(50));
+      KeyUp(VK_BACK);
+      wait(50+random(50));
+    end;
+  until(a=round(length(message0) / b));
+end;
+
+//Created by: TwoSevenNine
+//Description: Returns a string with random capitals included.
+//Used Like: RandomCase('Hello my noob frieds!');
+function RandomCase(message1:string):string;
+var
+  a:integer;
+  b:boolean;
+  c:string;
+begin
+  a:=1;
+  repeat
+  a:=a+1;
+  b:=rbool;
+  c:=message1[a];
+  if b then
+  begin
+    c:=uppercase(c)
+    delete(message1,a,1);
+    insert(c,message1,a);
+  end else
+  begin
+    c:=lowercase(c)
+    delete(message1,a,1);
+    insert(c,message1,a);
+  end;
+  until(a=length(message1));
+  result:=message1;
+end;
+
+//Created by: King Of Knives
+//Description: Converts a string to a Char. Useful for GetKeyCode, which is
+//needed almost all the time in KeyDown/KeyUp
+//Used Like: StrToChar('A');
+function StrToChar(S: String): Char;
+begin
+  If(Length(S) = 1)then
+  begin
+    Result:= StrGet(S,1);
+  end;
+end;

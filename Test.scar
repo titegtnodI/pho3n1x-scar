@@ -1,0 +1,16 @@
+program Test;
+{This program will test to see if Phoenix is running fine if you get any errors]
+[it's not running fine and you should re-download Phoenix.                     ]
+[Created by: ti.teg.tnod.I                                                     }
+
+{.include Phoenix.scar}
+//{.include Runescape.scar}
+{.include Other/ClubPenguin.scar}
+{.include Other/Gaia.scar}
+{.include Other/Unreal.scar}
+{.include Other/Metin2.scar}
+
+begin
+  SetupPhoenix;
+  WriteLn('Everything is working fine');
+end.

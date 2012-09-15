@@ -1,0 +1,144 @@
+{This is where all mouse related things will be                                ]
+[______________________________________________________________________________]
+[procedure ClickMouseSafe(X, Y: Integer; Left: Boolean);                       ]
+[procedure PhoenixMoveEx(x, y, xran, yran, xshake, yshake, delay, delran: integer);]
+[procedure PhoenixMove(x, y, xran, yran);                                      ]
+[procedure PhoenixMouseEx(x, y, xran, yran, xshake, yshake, delay, delran: integer; left: boolean);]
+[procedure PhoenixMouse(XX, YY, XR, YR: Integer; Left: Boolean);               ]
+[procedure MCBox(xx, yy, xx2, yy2: integer; lefft: boolean);                   ]
+[procedure MBox(xx, yy, xx2, yy2: integer);                                    ]
+[______________________________________________________________________________}
+
+//Created by: ti.teg.tnod.I
+//Description: Does the same thing as ClickMouse without detectability.
+//Used Like: ClickMouseSafe(307, 102, True);
+procedure ClickMouseSafe(X, Y: Integer; Btn: TMouseButton);
+begin
+  MouseBtnDown(X, Y, Btn);
+  Wait(31 + Random(10));
+  MouseBtnUp(X, Y, Btn);
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Human-like moves the mouse.
+//Used Like: PhoenixMoveEx(307, 102, 3, 3, 2, 2, 2, 2);
+procedure PhoenixMoveEx(x, y, xran, yran, xshake, yshake, delay, delran: integer);
+var xx, yy, xx1, yy1, rand, destx, desty: integer;
+begin
+  getmousepos(xx, yy);
+  getmousepos(xx1, yy1);
+  x:= x - xran + random(xran * 2);
+  y:= y - yran + random(yran * 2);
+  xx:= xx - x;
+  yy:= yy - y;
+  repeat
+    if (destx = 0) and not(yy = 0) and not(xx = 0) and (Random(150) = 0) then destx := Range(-50, 50);
+    if (desty = 0) and not(xx = 0) and not(yy = 0) and (Random(150) = 0) then desty := Range(-50, 50);
+    if (destx = 0) and (xx = 0) and (yy > 75) and (Random(2) = 0) then destx := Range(-50, 50);
+    if (destx = 0) and (xx = 0) and (yy < -75) and (Random(2) = 0) then destx := Range(-50, 50);
+    if (desty = 0) and (yy = 0) and (xx > 75) and (Random(2) = 0) then desty := Range(-50, 50);
+    if (desty = 0) and (yy = 0) and (xx < -75) and (Random(2) = 0) then desty := Range(-50, 50);
+    if (xx >= 0) and (destx = 0) then
+    begin
+      rand:= 1 + random(xshake);
+      xx:= xx - (rand);
+      xx1:= xx1 - (rand);
+    end;
+    if (xx <= 0) and (destx = 0) then
+    begin
+      rand := 1 + random(xshake);
+      xx := xx + (rand);
+      xx1 := xx1 + (rand);
+    end;
+    if destx > 0 then
+    begin
+       destx := destx - 1;
+       rand := 1 + random(xshake);
+       xx := xx + (rand);
+       xx1 := xx1 + (rand);
+    end;
+    if destx < 0 then
+    begin
+       destx := destx + 1;
+       rand := 1 + random(xshake);
+       xx := xx - (rand);
+       xx1 := xx1 - (rand);
+    end;
+    if (yy >= 0) and (desty = 0) then
+    begin
+      rand := 1 + random(xshake);
+      yy := yy - (rand);
+      yy1 := yy1 - (rand);
+    end;
+    if (yy <= 0) and (desty = 0) then
+    begin
+      rand:= 1 + random(xshake);
+      yy:= yy + (rand);
+      yy1:= yy1 + (rand);
+    end;
+    if desty > 0 then
+    begin
+       desty := desty - 1;
+       rand:= 1 + random(xshake);
+       yy:= yy + (rand);
+       yy1:= yy1 + (rand);
+    end;
+    if desty < 0 then
+    begin
+       desty := desty + 1;
+       yy:= yy - (rand);
+       yy1:= yy1 - (rand);
+    end;
+    movemouse(xx1, yy1);
+    wait(delay + random(delran));
+  until((xx = 0)and(yy = 0))
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Human-like moves the mouse.
+//Used Like: PhoenixMove(307, 102, 3, 3);
+procedure PhoenixMove(x, y, xran, yran: Integer);
+begin
+  PhoenixMoveEx(X, Y, XRan, YRan, 2, 2, MDelay, MDelay);
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Human-like moves the mouse, then clicks.
+//Used Like: PhoenixMouseEx(307, 102, 3, 3, 2, 2, 2, 2, true);
+procedure PhoenixMouseEx(x, y, xran, yran, xshake, yshake, delay, delran: integer; left: boolean);
+var xx, yy: integer;
+begin
+  PhoenixMoveEx(X, Y, XRan, YRan, 2, 2, MDelay, MDelay);
+  getmousepos(xx, yy);
+  wait(50 + random(75));
+  ClickMouseSafe(XX, YY, Left);
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Human-like moves the mouse, then clicks.
+//Used Like: PhoenixMouse(307, 102, 3, 3, true);
+procedure PhoenixMouse(XX, YY, XR, YR: Integer; Left: Boolean);
+begin
+  PhoenixMouseEx(XX, YY, XR, YR, 2, 2, 2, 2, Left);
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Human-like moves the mouse, then clicks in the box.
+//Used Like: mcbox(362, 222, 926, 453, true);
+procedure mcbox(xx, yy, xx2, yy2: integer; lefft: boolean);
+  begin
+    xx:= xx + random(xx2 - xx)
+    yy:= yy + random(yy2 - yy)
+    PhoenixMouseEx(xx, yy, 1, 1, 2, 2, 2, 2, lefft);
+  end;
+
+//Created by: ti.teg.tnod.I
+//Description: The same thing like mcbox just doesn't click
+//Used Like: mbox(362, 222, 926, 453);
+  procedure mbox(xx, yy, xx2, yy2: integer);
+  begin
+    xx:= xx + random(xx2 - xx)
+    yy:= yy + random(yy2 - yy)
+    PhoenixMoveEx(307, 102, 1, 1, 2, 2, 2, 2);
+    wait(100 + random(100));
+  end;

@@ -1,0 +1,23 @@
+var KDelay, MDelay : integer;
+
+{.include pho3n1x/General/Delay.scar}
+{.include pho3n1x/General/Mouse.scar}
+{.include pho3n1x/General/Type.scar}
+
+//Created by: ti.teg.tnod.I
+//Description: Sets up Phoenix
+//Used Like: SetupPhoenix
+procedure SetupPhoenix;
+var number: integer;
+    version: string;
+begin
+  KDelay := 100; //The delay and random delay for each key pressed
+  MDelay := 2; //The delay and random delay in mouse movements
+
+  number:= getscarversion;
+  case number of
+    335: version:= 'Divi 3.35';
+  end;
+  if version = '' then Disguise('WARNING - pho3n1x is outdated - WARNING');
+  if not(version = '') then Disguise('SCAR '+version+' - Powered by pho3n1x');
+end;

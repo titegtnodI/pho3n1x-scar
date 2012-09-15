@@ -1,0 +1,95 @@
+Change Log
+
+V1.1
+
+    * Bug fixes for SCAR Divi 3.35
+    * Support for previous SCAR versions dropped
+    * RuneScape support removed   
+    * Renamed from Phoenix to pho3n1x for consistency
+    * Shortened Unreal.scar
+    * Changed syntax of "command" in Unreal.scar
+
+V1.01
+
+    * Bug fixes for SCAR Divi 3.25
+
+V1.0 Alpha 1
+
+    * Draynor bank finding
+    * Ability to switch run on or off
+    * Detect how much run is left
+    * Ability to switch tabs
+    * Archived
+    * TypeSend1 is less detectable
+    * SetUpPhoenix is required
+    * ClickMouseSafe delay reduced
+    * Timers
+    * Better PhoenixWait
+    * FindFight added
+    * WaitFight added
+    * Skills.scar added
+    * Fixed a bunch of stuff that broke
+    * Fixed standards here and there
+    * Changed all instances of TheGuyWhoGotOn to ti.teg.tnod.I
+    * Changed all instances of DaBomber to TwoSevenNine
+    * Updated Test.scar
+
+
+V0.5 Beta
+
+    * Wait2
+    * Works with the new RS
+
+
+V0.4 Beta
+
+    * Added QuickSkill
+    * Added QuickSkill to AntiBan
+    * Added PressEnter
+
+
+V0.3 Beta
+
+    * FindMSObj now searches MTO (Middle To Out)
+
+
+V0.2 Beta
+
+    * Detect player's nick
+    * Detect words on the screen
+    * Removed SlowMCBox and changed MCBox
+    * Slowed down MBox
+
+
+V0.1 Beta
+
+    * Made PhoenixMouse MUCH more human-like
+    * Added way better object finding
+    * Removed the old object finding
+    * Added a function to detect how much health you have
+    * Fixed mining procedure
+    * Fixed banking for new object finding (Only 2 banks)
+
+
+V0.01 Beta
+
+    * Changed some text
+    * Changed contact info
+    * Modified 2 procedure's names
+    * Fixed some order issues in the overview
+    * Added more change log to V0.0 Beta
+    * Changed PerfectMouse to PhoenixMouse
+    * Change PerfectMove to PhoenixMove
+    * Changed PerfectType to PhoenixType
+    * PHLogin to PhoenixLogin
+    * PHLogout to PhoenixLogout
+    * PHWait to PhoenixWait
+
+
+V0.0 Beta
+
+    * Removed everything that was too inefficient
+    * Removed most things with horrid standards
+    * Added a change log link
+    * Made the PerfectMouse procedures shorter
+    * Fixed some typos in descriptions

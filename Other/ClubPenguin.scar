@@ -1,0 +1,44 @@
+{Anything to do with Club Penguin will be here                                 ]
+[Not sure if any of this works anymore, give it a shot I guess                 ]
+[______________________________________________________________________________]
+[procedure PlayFish;                                                           ]
+[procedure CatchFish;                                                          ]
+[function LethalFish: boolean;                                                 ]
+[______________________________________________________________________________}
+
+//Created by: ti.teg.tnod.I
+//Description: Clicks the button to start fishing at the main fishing page.
+//Used Like: playfish;
+procedure playfish;
+var xx, yy: integer;
+begin
+  findcolor(xx, yy, 16777215, 327, 274, 441, 318);
+  mcbox(336, 285, 418, 315, true);
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Catches a fish if in range
+//Used Like: catchfish;
+procedure catchfish;
+var xx, yy: integer;
+begin
+  if findcolor(xx, yy, 16777215, 337, 163, 412, 474) then
+  begin
+    PhoenixMouseEx(xx, yy, 7, 7, 2, 2, 2, 2, true);
+    xx := 323 + random(67)
+    yy := 45 + random(32)
+    wait(250 + random(250));
+    PhoenixMouseEx(xx, yy, 0, 0, 2, 2, 2, 2, true);
+  end;
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Checks for anything lethal and returns true.
+function lethalfish: boolean;
+var xx, yy: integer;
+begin
+  result := false
+  if (findcolor(xx, yy, 10698535, 280, 161, 461, 474))
+    or(findcolor(xx, yy, 10066329, 280, 161, 461, 474))
+      or(findcolor(xx, yy, 3355596, 337, 163, 412, 474)) then result := true
+end;

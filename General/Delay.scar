@@ -1,0 +1,48 @@
+{This is where different delays and timers will be                             ]
+[______________________________________________________________________________]
+[procedure Wait2(Wait1 : integer; var LastTime: integer);                      ]
+[function Range(first, last: integer): integer;                                ]
+[procedure SetTimer(Time : integer; var Timer : integer);                      ]
+[function TimeUp(Timer : integer) : boolean;                                   ]
+[______________________________________________________________________________}
+
+//Created by: ti.teg.tnod.I
+//Description: What it does (if you haven't noticed) is factors in how long
+//it's been and tries to wait the correct amount of time to offset that. It's
+//not perfect though I think at 100 its been on average 2ms off but no big deal.
+//This could really help the detectability of some scripts because I know if I
+//set SCAR to a high priority the mouse is just zooming to its destination and
+//seems kinda detectable.
+//Used Like: Wait2(100, Timed);
+procedure Wait2(Wait1 : integer; var LastTime: integer);
+var WaitTime : integer;
+begin
+  WaitTime := Wait1 - (GetTimeRunning - LastTime);
+  Wait(WaitTime);
+  LastTime := GetTimeRunning;
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Like Randomrange except in range(0, 2) it would
+//include the 2.
+function range(first, last: integer): integer;
+begin
+  result:= first + random(last + 1)
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Sets up a timer for a certain variable
+//Used Like: SetTime(1000, Timer);
+procedure SetTimer(Time : integer; var Timer : integer);
+begin
+  Timer := GetTimeRunning + Time;
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Returns true if a Timer is up
+//Used Like: TimeUp(Timer);
+function TimeUp(Timer : integer) : boolean;
+begin
+  Result := false;
+  if Timer <= GetTimeRunning then Result := true;
+end;

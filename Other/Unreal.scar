@@ -1,0 +1,39 @@
+{Anything to do with Unreal will be here                                       ]
+[______________________________________________________________________________]
+[procedure Summon(thing: string; amount: integer; strafe: boolean);            ]
+[procedure Command(thing: string);                            ]
+[______________________________________________________________________________}
+
+//Created by: ti.teg.tnod.I
+//Description: Types the command you want.
+//Used Like: command('admin set ammo ammoamount 5200');
+procedure command(thing: string);
+begin
+  KeyDown(VK_TAB);   
+  Wait(25 + Random(25));
+  KeyUp(VK_TAB);
+  wait(50);
+  TypeSend1(thing);
+  wait(100);
+  PressEnter;
+  wait(100);
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Summons something you want, and you can specify
+//how many and if you want to strafe after each summon.
+//Used Like: summon('cow', 3, true);
+procedure summon(thing: string; amount: integer; strafe: boolean);
+begin
+  repeat
+    Command('summon ' + thing);
+    if strafe = true then
+    begin
+      keydown(CharToVKey(','));
+      wait(250);
+      keyup(CharToVKey(','));
+      keyup(CharToVKey(','));
+    end;
+    amount:= amount - 1
+  until(amount = 0);
+end;

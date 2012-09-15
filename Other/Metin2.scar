@@ -1,0 +1,39 @@
+{Anything to do with Metin 2 will be here                                      ]
+[Not sure if any of this works anymore, give it a shot I guess                 ]
+[______________________________________________________________________________]
+[function LowHealth: boolean;                                                  ]
+[function IsReady(Slot: integer): boolean;                                     ]
+[procedure PickupItem;                                                         ]
+[______________________________________________________________________________}
+
+//Created by: ti.teg.tnod.I
+//Description: Checks to see if your health is low
+function LowHealth: boolean;
+var xx, yy: integer;
+begin
+  result:= findcolor(xx, yy, 4539717, 62, 598, 90, 605);
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Checks to see if your spell is ready (Max 4)
+//Used Like: IsReady(1);
+function IsReady(Slot: integer): boolean;
+var xx, yy: integer;
+begin
+  case slot of
+    1: if (not(findcolor(xx, yy, 0, 321, 599, 342, 623)))and(not(findcolortol(xx, yy, 1651259, 331, 597, 333, 599, 10))) then result:= true;
+    2: if (not(findcolor(xx, yy, 0, 358, 603, 375, 621)))and(not(findcolortol(xx, yy, 1651259, 363, 597, 365, 599, 10))) then result:= true;
+    3: if (not(findcolor(xx, yy, 0, 388, 603, 408, 622)))and(not(findcolortol(xx, yy, 1651259, 395, 597, 397, 599, 10))) then result:= true;
+    4: if (not(findcolor(xx, yy, 0, 358, 603, 375, 621)))and(not(findcolortol(xx, yy, 1651259, 427, 597, 429, 599, 10))) then result:= true;
+  end;
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Picks up a nearby item
+//Used Like: PickupItem;
+procedure PickupItem;
+begin
+  keydown(CharToVKey('z'));
+  wait(750 + random(50));
+  keyup(CharToVKey('z'));
+end;

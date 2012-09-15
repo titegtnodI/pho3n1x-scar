@@ -1,0 +1,90 @@
+{Anything to do with Gaia Online will be here                                  ]
+[Not sure if any of this works anymore, give it a shot I guess                 ]
+[______________________________________________________________________________]
+[procedure Say(words: string);                                                 ]
+[procedure InsertCoin(Amount: Integer);                                        ]
+[procedure ClickSpin;                                                          ]
+[function Coins: Boolean;                                                      ]
+[function CountCoins: integer;                                                 ]
+[procedure CloseGame;                                                          ]
+[procedure EndGame(message1, goodbye: string);                                 ]
+[______________________________________________________________________________}
+
+//Created by: ti.teg.tnod.I
+//Description: The procedure will click on the chat window and type
+//Used Like: say('Hey Guys');
+procedure say(words: string);
+begin
+  MCBox(18, 561, 200, 578, true);
+  wait(500 + random(750));
+  typesend1(words);
+  wait(500 + random(750));
+  PressEnter;
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Inserts coins into the slot machine (Max 3).
+//Used Like: InsertCoin(3);
+procedure InsertCoin(Amount: Integer);
+var xx, yy: integer;
+begin
+  wait(1000 + random(500));
+  xx:= 192 + random(68)
+  yy:= 447 + random(20)
+  repeat
+    PhoenixMouseEx(xx, yy, 2, 2, 2, 2, 2, 2, true);
+    wait(150 + random(100));
+    amount:= amount - 1
+  until Amount = 0
+  wait(750 + random(500));
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Clicks the spin button. (Slots)
+//Used Like: clickspin;
+procedure clickspin;
+begin
+  wait(500 + random(500));
+  mcbox(438, 447, 506, 467, true);
+  wait(500 + random(500));
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Returns true if there are coins in the slot machine.
+function Coins: Boolean;
+var xx, yy: integer;
+begin
+  result:= findcolor(xx, yy, 10605797, 290, 418, 300, 424)
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Counts the coins in the slot machine and returns the amount
+function countcoins: integer;
+var xx, yy: integer;
+begin
+  if findcolor(xx, yy, 10675444, 283, 415, 306, 425) then result:= result + 1;
+  if findcolor(xx, yy, 10675444, 335, 412, 356, 424) then result:= result + 1;
+  if findcolor(xx, yy, 10675444, 384, 411, 398, 419) then result:= result + 1;
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Clicks the mini X button in the top right of the
+//screen
+//Used Like: CloseGame;
+procedure CloseGame;
+begin
+  wait(1500 + random(500));
+  MCBox(622, 6, 633, 15, true);
+end;
+
+//Created by: ti.teg.tnod.I
+//Description: Like CloseGame except it sends a message to the debug
+//box and types a goodbye message.
+//Used Like: endgame('You`re Out Of Coins!', 'Bye!');
+procedure endgame(message1, goodbye: string);
+begin
+  Writeln(message1);
+  say(goodbye);
+  closegame;
+  TerminateScript;
+end;
